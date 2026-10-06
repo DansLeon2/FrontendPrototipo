@@ -1,28 +1,28 @@
-﻿import { useState } from "react"
+import { useState } from "react";
 
 const STEPS = [
   { id: 1, title: "Datos de acceso" },
 
-  { id: 2, title: "InformaciÃ³n personal" },
+  { id: 2, title: "Informacion personal" },
 
-  { id: 3, title: "UbicaciÃ³n" },
+  { id: 3, title: "Ubicacion" },
 
   { id: 4, title: "Contacto de emergencia" },
 
   { id: 5, title: "Documento de identidad" },
   { id: 6, title: "Seguridad y Biometría" },
-]
+];
 
 export default function RegisterScreen({
   onNavigate,
 }: {
-  onNavigate: (screen: "login" | "register" | "recovery") => void
+  onNavigate: (screen: "login" | "register" | "recovery") => void;
 }) {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(1);
 
-  const nextStep = () => setCurrentStep((p) => Math.min(p + 1, 6))
+  const nextStep = () => setCurrentStep((p) => Math.min(p + 1, 6));
 
-  const prevStep = () => setCurrentStep((p) => Math.max(p - 1, 1))
+  const prevStep = () => setCurrentStep((p) => Math.max(p - 1, 1));
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#F8FAFC] py-10 px-4 font-sans">
@@ -32,8 +32,8 @@ export default function RegisterScreen({
           Crear una cuenta
         </h1>
         <p className="mt-2 text-[14px] leading-relaxed text-[#64748B]">
-          Completa la informaciÃ³n para crear tu cuenta y enviar tu solicitud de
-          inscripciÃ³n.
+          Completa la informacion para crear tu cuenta y enviar tu solicitud de
+          inscripcion.
         </p>
       </div>
 
@@ -46,9 +46,9 @@ export default function RegisterScreen({
           </p>
           <div className="flex gap-3">
             {STEPS.map((step) => {
-              const isActive = currentStep >= step.id
+              const isActive = currentStep >= step.id;
 
-              const isCurrent = currentStep === step.id
+              const isCurrent = currentStep === step.id;
 
               return (
                 <div key={step.id} className="flex flex-1 flex-col gap-2">
@@ -69,7 +69,7 @@ export default function RegisterScreen({
                     {step.title}
                   </span>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function RegisterScreen({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Step1() {
@@ -120,7 +120,7 @@ function Step1() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1.5">
         <label className="text-[14px] font-semibold text-[#1E293B]">
-          Correo electrÃ³nico *
+          Correo electronico *
         </label>
         <input
           type="email"
@@ -131,12 +131,12 @@ function Step1() {
       <div className="flex gap-5 sm:flex-row flex-col">
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#1E293B]">
-            ContraseÃ±a *
+            Contraseña *
           </label>
           <div className="relative">
             <input
               type="password"
-              placeholder="MÃ­nimo 8 caracteres"
+              placeholder="Mínimo 8 caracteres"
               className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 pr-11 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
             />
             <button className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#64748B]">
@@ -156,12 +156,12 @@ function Step1() {
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#1E293B]">
-            Confirmar contraseÃ±a *
+            Confirmar contraseña *
           </label>
           <div className="relative">
             <input
               type="password"
-              placeholder="Repite tu contraseÃ±a"
+              placeholder="Repite tu contraseña"
               className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 pr-11 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
             />
             <button className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#64748B]">
@@ -181,33 +181,8 @@ function Step1() {
         </div>
       </div>
 
-      {/* PIN Section */}
-      <div className="flex gap-5 sm:flex-row flex-col mt-2">
-        <div className="flex flex-1 flex-col gap-1.5">
-          <label className="text-[14px] font-semibold text-[#1E293B]">
-            PIN de seguridad (6 dÃ­gitos) *
-          </label>
-          <input
-            type="password"
-            placeholder="Ej: 123456"
-            maxLength={6}
-            className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065] text-center tracking-widest text-lg"
-          />
-        </div>
-        <div className="flex flex-1 flex-col gap-1.5">
-          <label className="text-[14px] font-semibold text-[#1E293B]">
-            Confirmar PIN *
-          </label>
-          <input
-            type="password"
-            placeholder="Ej: 123456"
-            maxLength={6}
-            className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065] text-center tracking-widest text-lg"
-          />
-        </div>
-      </div>
     </div>
-  )
+  );
 }
 
 function Step2() {
@@ -238,18 +213,18 @@ function Step2() {
       <div className="flex gap-5 sm:flex-row flex-col">
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            CÃ©dula *
+            Cédula *
           </label>
           <input
             type="text"
             placeholder="Ej: 0900000001"
             className="h-[42px] w-full rounded-lg border border-[#E2E8F0] bg-white px-3 text-[14px] text-[#1E293B] outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
           />
-          <span className="text-[11px] text-[#94A3B8]">0/10 dÃ­gitos</span>
+          <span className="text-[11px] text-[#94A3B8]">0/10 dí­gitos</span>
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            TelÃ©fono celular *
+            Teléfono celular *
           </label>
           <input
             type="tel"
@@ -312,7 +287,7 @@ function Step2() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Step3() {
@@ -321,11 +296,11 @@ function Step3() {
       <div className="flex gap-5 sm:flex-row flex-col">
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            PaÃ­s
+            Paí­s
           </label>
           <input
             type="text"
-            placeholder="PaÃ­s"
+            placeholder="Paí­s"
             className="h-[42px] w-full rounded-lg border border-[#E2E8F0] bg-white px-3 text-[14px] text-[#1E293B] outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
           />
         </div>
@@ -353,17 +328,17 @@ function Step3() {
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            DirecciÃ³n
+            Dirección
           </label>
           <input
             type="text"
-            placeholder="DirecciÃ³n"
+            placeholder="Dirección"
             className="h-[42px] w-full rounded-lg border border-[#E2E8F0] bg-white px-3 text-[14px] text-[#1E293B] outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
           />
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Step4() {
@@ -392,7 +367,7 @@ function Step4() {
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            TelÃ©fono
+            Teléfono
           </label>
           <input
             type="tel"
@@ -402,7 +377,7 @@ function Step4() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Step5() {
@@ -429,14 +404,15 @@ function Step5() {
           Sube tu documento de identidad
         </h3>
         <p className="mt-1 text-[14px] text-[#64748B]">
-          Formatos soportados: JPG, PNG, PDF. TamaÃ±o mÃ¡ximo: 5MB.
+          Formatos soportados: JPG, PNG, PDF. Tamaño máximo: 5MB.
         </p>
       </div>
-      <button className="mt-4 rounded-lg border border-[#004065] bg-white px-6 py-2 text-[14px] font-semibold text-[#004065] hover:bg-[#F8FAFC]">
+      <label className="mt-4 cursor-pointer rounded-lg border border-[#004065] bg-white px-6 py-2 text-[14px] font-semibold text-[#004065] hover:bg-[#F8FAFC]">
         Seleccionar archivo
-      </button>
+        <input type="file" className="hidden" accept=".jpg,.png,.pdf" />
+      </label>
     </div>
-  )
+  );
 }
 
 function Step6() {
@@ -522,5 +498,5 @@ function Step6() {
         </button>
       </div>
     </div>
-  )
+  );
 }

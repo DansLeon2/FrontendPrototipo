@@ -1,7 +1,7 @@
 export default function LoginScreen({
   onNavigate,
 }: {
-  onNavigate: (screen: "login" | "register" | "recovery") => void;
+  onNavigate: (screen: "login" | "register" | "recovery") => void
 }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#F8FAFC] p-4 font-sans">
@@ -81,5 +81,5 @@ export default function LoginScreen({
         </div>
       </div>
     </div>
-  );
+  )
 }
