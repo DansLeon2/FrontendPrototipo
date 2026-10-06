@@ -1,15 +1,21 @@
-import { useState } from "react";
-import LoginScreen from "./components/LoginScreen";
-import RegisterScreen from "./components/RegisterScreen";
-import RecoveryScreen from "./components/RecoveryScreen";
+import { useState } from "react"
+import LoginScreen from "./components/LoginScreen"
+import RegisterScreen from "./components/RegisterScreen"
+import RecoveryScreen from "./components/RecoveryScreen"
 
 // Placeholders for the biometric / security screens that were originally inline
 // We restored these as placeholders since the original code was lost.
-function LockedScreen({ onNavigate }: { onNavigate: (screen: string) => void }) {
+function LockedScreen({
+  onNavigate,
+}: {
+  onNavigate: (screen: string) => void
+}) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <div className="rounded-2xl bg-white p-8 shadow-sm text-center max-w-sm w-full">
-        <h2 className="text-xl font-bold text-slate-800 mb-4">Pantalla de Bloqueo Biométrico</h2>
+        <h2 className="text-xl font-bold text-slate-800 mb-4">
+          Pantalla de Bloqueo Biométrico
+        </h2>
         <p className="text-slate-500 mb-6">(Prototipo de tarjeta biométrica)</p>
         <button
           onClick={() => onNavigate("success")}
@@ -19,15 +25,23 @@ function LockedScreen({ onNavigate }: { onNavigate: (screen: string) => void }) 
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-function SuccessScreen({ onNavigate }: { onNavigate: (screen: string) => void }) {
+function SuccessScreen({
+  onNavigate,
+}: {
+  onNavigate: (screen: string) => void
+}) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <div className="rounded-2xl bg-white p-8 shadow-sm text-center max-w-sm w-full">
-        <h2 className="text-xl font-bold text-green-600 mb-4">¡Autenticación Exitosa!</h2>
-        <p className="text-slate-500 mb-6">El proceso biométrico ha sido validado.</p>
+        <h2 className="text-xl font-bold text-green-600 mb-4">
+          ¡Autenticación Exitosa!
+        </h2>
+        <p className="text-slate-500 mb-6">
+          El proceso biométrico ha sido validado.
+        </p>
         <button
           onClick={() => onNavigate("login")}
           className="w-full rounded-lg bg-green-600 py-3 text-white font-semibold"
@@ -36,14 +50,16 @@ function SuccessScreen({ onNavigate }: { onNavigate: (screen: string) => void })
         </button>
       </div>
     </div>
-  );
+  )
 }
 
 function SealScreen({ onNavigate }: { onNavigate: (screen: string) => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <div className="rounded-2xl bg-white p-8 shadow-sm text-center max-w-sm w-full">
-        <h2 className="text-xl font-bold text-slate-800 mb-4">Sello Anti-Phishing</h2>
+        <h2 className="text-xl font-bold text-slate-800 mb-4">
+          Sello Anti-Phishing
+        </h2>
         <p className="text-slate-500 mb-6">Verifica tu imagen de seguridad.</p>
         <button
           onClick={() => onNavigate("keypad")}
@@ -53,15 +69,23 @@ function SealScreen({ onNavigate }: { onNavigate: (screen: string) => void }) {
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-function KeypadScreen({ onNavigate }: { onNavigate: (screen: string) => void }) {
+function KeypadScreen({
+  onNavigate,
+}: {
+  onNavigate: (screen: string) => void
+}) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <div className="rounded-2xl bg-white p-8 shadow-sm text-center max-w-sm w-full">
-        <h2 className="text-xl font-bold text-slate-800 mb-4">Teclado PIN Seguro</h2>
-        <p className="text-slate-500 mb-6">Ingresa tu PIN usando el teclado dinámico.</p>
+        <h2 className="text-xl font-bold text-slate-800 mb-4">
+          Teclado PIN Seguro
+        </h2>
+        <p className="text-slate-500 mb-6">
+          Ingresa tu PIN usando el teclado dinámico.
+        </p>
         <button
           onClick={() => onNavigate("locked")}
           className="w-full rounded-lg bg-[#004065] py-3 text-white font-semibold"
@@ -70,12 +94,12 @@ function KeypadScreen({ onNavigate }: { onNavigate: (screen: string) => void }) 
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-type ScreenName = "login" | "register" | "recovery" | "locked" | "success" | "seal" | "keypad";
+type ScreenName = "login" | "register" | "recovery" | "locked" | "success" | "seal" | "keypad"
 
-const SCREENS: { id: ScreenName; label: string }[] = [
+const SCREENS: { id: ScreenName label: string }[] = [
   { id: "login", label: "Login" },
   { id: "register", label: "Registro (5 pasos)" },
   { id: "recovery", label: "Recuperar Contraseña" },
@@ -83,24 +107,28 @@ const SCREENS: { id: ScreenName; label: string }[] = [
   { id: "keypad", label: "Teclado PIN" },
   { id: "locked", label: "Bloqueo Biométrico" },
   { id: "success", label: "Éxito" },
-];
+]
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState<ScreenName>("login");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [currentScreen, setCurrentScreen] = useState<ScreenName>("login")
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   const handleNavigate = (screen: string) => {
-    setCurrentScreen(screen as ScreenName);
-  };
+    setCurrentScreen(screen as ScreenName)
+  }
 
   return (
     <div className="flex min-h-screen bg-slate-100 overflow-hidden">
       {/* Sidebar Navigation */}
       <div
-        className={`${sidebarOpen ? "w-64" : "w-0"} bg-white border-r border-slate-200 transition-all duration-300 overflow-hidden flex flex-col`}
+        className={`${
+          sidebarOpen ? "w-64" : "w-0"
+        } bg-white border-r border-slate-200 transition-all duration-300 overflow-hidden flex flex-col`}
       >
         <div className="p-6 border-b border-slate-100">
-          <h1 className="font-bold text-slate-800 text-lg tracking-tight">Menú de Navegación</h1>
+          <h1 className="font-bold text-slate-800 text-lg tracking-tight">
+            Menú de Navegación
+          </h1>
           <p className="text-xs text-slate-500 mt-1">Tour del prototipo</p>
         </div>
         <div className="flex-1 overflow-y-auto p-4 space-y-1">
@@ -147,15 +175,29 @@ export default function App() {
 
         {/* Screen Render */}
         <div className="w-full h-full">
-          {currentScreen === "login" && <LoginScreen onNavigate={handleNavigate} />}
-          {currentScreen === "register" && <RegisterScreen onNavigate={handleNavigate} />}
-          {currentScreen === "recovery" && <RecoveryScreen onNavigate={handleNavigate} />}
-          {currentScreen === "seal" && <SealScreen onNavigate={handleNavigate} />}
-          {currentScreen === "keypad" && <KeypadScreen onNavigate={handleNavigate} />}
-          {currentScreen === "locked" && <LockedScreen onNavigate={handleNavigate} />}
-          {currentScreen === "success" && <SuccessScreen onNavigate={handleNavigate} />}
+          {currentScreen === "login" && (
+            <LoginScreen onNavigate={handleNavigate} />
+          )}
+          {currentScreen === "register" && (
+            <RegisterScreen onNavigate={handleNavigate} />
+          )}
+          {currentScreen === "recovery" && (
+            <RecoveryScreen onNavigate={handleNavigate} />
+          )}
+          {currentScreen === "seal" && (
+            <SealScreen onNavigate={handleNavigate} />
+          )}
+          {currentScreen === "keypad" && (
+            <KeypadScreen onNavigate={handleNavigate} />
+          )}
+          {currentScreen === "locked" && (
+            <LockedScreen onNavigate={handleNavigate} />
+          )}
+          {currentScreen === "success" && (
+            <SuccessScreen onNavigate={handleNavigate} />
+          )}
         </div>
       </div>
     </div>
-  );
+  )
 }

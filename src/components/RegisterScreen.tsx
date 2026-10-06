@@ -1,22 +1,28 @@
-import { useState } from "react";
+﻿import { useState } from "react"
 
 const STEPS = [
   { id: 1, title: "Datos de acceso" },
-  { id: 2, title: "Información personal" },
-  { id: 3, title: "Ubicación" },
+
+  { id: 2, title: "InformaciÃ³n personal" },
+
+  { id: 3, title: "UbicaciÃ³n" },
+
   { id: 4, title: "Contacto de emergencia" },
+
   { id: 5, title: "Documento de identidad" },
-];
+  { id: 6, title: "Seguridad y Biometría" },
+]
 
 export default function RegisterScreen({
   onNavigate,
 }: {
-  onNavigate: (screen: "login" | "register" | "recovery") => void;
+  onNavigate: (screen: "login" | "register" | "recovery") => void
 }) {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(1)
 
-  const nextStep = () => setCurrentStep((p) => Math.min(p + 1, 5));
-  const prevStep = () => setCurrentStep((p) => Math.max(p - 1, 1));
+  const nextStep = () => setCurrentStep((p) => Math.min(p + 1, 6))
+
+  const prevStep = () => setCurrentStep((p) => Math.max(p - 1, 1))
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#F8FAFC] py-10 px-4 font-sans">
@@ -26,8 +32,8 @@ export default function RegisterScreen({
           Crear una cuenta
         </h1>
         <p className="mt-2 text-[14px] leading-relaxed text-[#64748B]">
-          Completa la información para crear tu cuenta y enviar tu solicitud de
-          inscripción.
+          Completa la informaciÃ³n para crear tu cuenta y enviar tu solicitud de
+          inscripciÃ³n.
         </p>
       </div>
 
@@ -36,12 +42,14 @@ export default function RegisterScreen({
         {/* Stepper Header */}
         <div className="mb-8 border-b border-[#F1F5F9] pb-6">
           <p className="mb-3 text-[14px] font-bold text-[#004065]">
-            Paso {currentStep} de 5:
+            Paso {currentStep} de 6:
           </p>
           <div className="flex gap-3">
             {STEPS.map((step) => {
-              const isActive = currentStep >= step.id;
-              const isCurrent = currentStep === step.id;
+              const isActive = currentStep >= step.id
+
+              const isCurrent = currentStep === step.id
+
               return (
                 <div key={step.id} className="flex flex-1 flex-col gap-2">
                   <div
@@ -61,7 +69,7 @@ export default function RegisterScreen({
                     {step.title}
                   </span>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
@@ -73,6 +81,7 @@ export default function RegisterScreen({
           {currentStep === 3 && <Step3 />}
           {currentStep === 4 && <Step4 />}
           {currentStep === 5 && <Step5 />}
+          {currentStep === 6 && <Step6 />}
         </div>
 
         {/* Footer Actions */}
@@ -97,13 +106,13 @@ export default function RegisterScreen({
               onClick={nextStep}
               className="flex h-[44px] min-w-[120px] items-center justify-center rounded-lg bg-[#004065] px-8 text-[14px] font-semibold text-white shadow-sm hover:bg-[#003B5C]"
             >
-              {currentStep === 5 ? "Finalizar" : "Siguiente"}
+              {currentStep === 6 ? "Finalizar" : "Siguiente"}
             </button>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Step1() {
@@ -111,7 +120,7 @@ function Step1() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1.5">
         <label className="text-[14px] font-semibold text-[#1E293B]">
-          Correo electrónico *
+          Correo electrÃ³nico *
         </label>
         <input
           type="email"
@@ -122,12 +131,12 @@ function Step1() {
       <div className="flex gap-5 sm:flex-row flex-col">
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#1E293B]">
-            Contraseña *
+            ContraseÃ±a *
           </label>
           <div className="relative">
             <input
               type="password"
-              placeholder="Mínimo 8 caracteres"
+              placeholder="MÃ­nimo 8 caracteres"
               className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 pr-11 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
             />
             <button className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#64748B]">
@@ -147,12 +156,12 @@ function Step1() {
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#1E293B]">
-            Confirmar contraseña *
+            Confirmar contraseÃ±a *
           </label>
           <div className="relative">
             <input
               type="password"
-              placeholder="Repite tu contraseña"
+              placeholder="Repite tu contraseÃ±a"
               className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 pr-11 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
             />
             <button className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#64748B]">
@@ -171,12 +180,12 @@ function Step1() {
           </div>
         </div>
       </div>
-      
+
       {/* PIN Section */}
       <div className="flex gap-5 sm:flex-row flex-col mt-2">
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#1E293B]">
-            PIN de seguridad (6 dígitos) *
+            PIN de seguridad (6 dÃ­gitos) *
           </label>
           <input
             type="password"
@@ -198,7 +207,7 @@ function Step1() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Step2() {
@@ -229,18 +238,18 @@ function Step2() {
       <div className="flex gap-5 sm:flex-row flex-col">
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            Cédula *
+            CÃ©dula *
           </label>
           <input
             type="text"
             placeholder="Ej: 0900000001"
             className="h-[42px] w-full rounded-lg border border-[#E2E8F0] bg-white px-3 text-[14px] text-[#1E293B] outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
           />
-          <span className="text-[11px] text-[#94A3B8]">0/10 dígitos</span>
+          <span className="text-[11px] text-[#94A3B8]">0/10 dÃ­gitos</span>
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            Teléfono celular *
+            TelÃ©fono celular *
           </label>
           <input
             type="tel"
@@ -303,7 +312,7 @@ function Step2() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Step3() {
@@ -312,11 +321,11 @@ function Step3() {
       <div className="flex gap-5 sm:flex-row flex-col">
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            País
+            PaÃ­s
           </label>
           <input
             type="text"
-            placeholder="País"
+            placeholder="PaÃ­s"
             className="h-[42px] w-full rounded-lg border border-[#E2E8F0] bg-white px-3 text-[14px] text-[#1E293B] outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
           />
         </div>
@@ -344,17 +353,17 @@ function Step3() {
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            Dirección
+            DirecciÃ³n
           </label>
           <input
             type="text"
-            placeholder="Dirección"
+            placeholder="DirecciÃ³n"
             className="h-[42px] w-full rounded-lg border border-[#E2E8F0] bg-white px-3 text-[14px] text-[#1E293B] outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
           />
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Step4() {
@@ -383,7 +392,7 @@ function Step4() {
         </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <label className="text-[14px] font-semibold text-[#334155]">
-            Teléfono
+            TelÃ©fono
           </label>
           <input
             type="tel"
@@ -393,7 +402,7 @@ function Step4() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Step5() {
@@ -420,12 +429,98 @@ function Step5() {
           Sube tu documento de identidad
         </h3>
         <p className="mt-1 text-[14px] text-[#64748B]">
-          Formatos soportados: JPG, PNG, PDF. Tamaño máximo: 5MB.
+          Formatos soportados: JPG, PNG, PDF. TamaÃ±o mÃ¡ximo: 5MB.
         </p>
       </div>
       <button className="mt-4 rounded-lg border border-[#004065] bg-white px-6 py-2 text-[14px] font-semibold text-[#004065] hover:bg-[#F8FAFC]">
         Seleccionar archivo
       </button>
     </div>
-  );
+  )
+}
+
+function Step6() {
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-[14px] font-semibold text-[#1E293B]">
+          Pregunta de seguridad *
+        </label>
+        <select className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]">
+          <option value="">Selecciona una pregunta...</option>
+          <option value="1">¿Cuál fue el nombre de tu primera mascota?</option>
+          <option value="2">¿En qué ciudad nació tu madre?</option>
+          <option value="3">¿Cuál fue el modelo de tu primer auto?</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Tu respuesta"
+          className="mt-2 h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065]"
+        />
+      </div>
+
+      <div className="flex gap-5 sm:flex-row flex-col mt-2">
+        <div className="flex flex-1 flex-col gap-1.5">
+          <label className="text-[14px] font-semibold text-[#1E293B]">
+            PIN de seguridad (6 dígitos) *
+          </label>
+          <input
+            type="password"
+            placeholder="Ej: 123456"
+            maxLength={6}
+            className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065] text-center tracking-widest text-lg"
+          />
+        </div>
+        <div className="flex flex-1 flex-col gap-1.5">
+          <label className="text-[14px] font-semibold text-[#1E293B]">
+            Confirmar PIN *
+          </label>
+          <input
+            type="password"
+            placeholder="Ej: 123456"
+            maxLength={6}
+            className="h-[46px] w-full rounded-lg border border-[#E2E8F0] bg-white px-4 text-[14px] text-[#1E293B] shadow-sm outline-none focus:border-[#004065] focus:ring-1 focus:ring-[#004065] text-center tracking-widest text-lg"
+          />
+        </div>
+      </div>
+
+      <div className="mt-4 flex flex-col items-center gap-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#004065]/10 text-[#004065]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" />
+            <path d="M15.15 15.35c.08-.4.12-.8.15-1.2.06-1.07.05-2.09-.03-3" />
+            <path d="M18.23 15.69c.12-.66.21-1.32.27-1.99.12-1.36.1-2.73-.08-4.1" />
+            <path d="M8.85 15.35c-.08-.4-.12-.8-.15-1.2-.06-1.07-.05-2.09.03-3" />
+            <path d="M5.77 15.69c-.12-.66-.21-1.32-.27-1.99-.12-1.36-.1-2.73.08-4.1" />
+            <path d="M12 5a5.5 5.5 0 0 0-5.5 5.5" />
+            <path d="M17.5 10.5A5.5 5.5 0 0 0 12 5" />
+            <path d="M21 16.5A9.5 9.5 0 0 0 12 2" />
+            <path d="M3 16.5A9.5 9.5 0 0 1 12 2" />
+          </svg>
+        </div>
+        <div className="text-center">
+          <p className="font-semibold text-[#004065]">
+            Configurar Huella Dactilar
+          </p>
+          <p className="text-[13px] text-[#64748B]">
+            Registra tu huella para iniciar sesión rápidamente y validar
+            operaciones desde dispositivos móviles.
+          </p>
+        </div>
+        <button className="rounded-lg bg-[#004065] px-6 py-2.5 text-[14px] font-semibold text-white hover:bg-[#003B5C]">
+          Enrolar Huella
+        </button>
+      </div>
+    </div>
+  )
 }
