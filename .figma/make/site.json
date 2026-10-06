@@ -1,0 +1,10 @@
+{
+  "description": "Enhance security for educational platforms with a robust authentication flow featuring biometric verification, anti-phishing measures, and device management.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
